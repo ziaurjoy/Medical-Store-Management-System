@@ -17,6 +17,7 @@ class Medicine(models.Model):
     shelf_no = models.CharField(max_length=100)
     # medicine expiry date
     exp_date = models.DateField()
+    # Manufacturing Date
     mfg = models.DateField()
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     description = models.TextField()

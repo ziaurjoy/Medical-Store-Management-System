@@ -1,5 +1,7 @@
 
-
+import django_heroku
+import dj_database_url
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -15,7 +17,7 @@ SECRET_KEY = 'django-insecure--fk-$eaemo9*_m2eq57rt_^4jmel_(#2-l_+apq36(+!sv)^!2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://pharmachymanagement.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -33,6 +35,7 @@ INSTALLED_APPS = [
     'company',
     'employee',
     'customer',
+    'corsheaders',
 
     # package and library
     'rest_framework',
@@ -60,6 +63,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'Medical_Store_Management_System.urls'
@@ -88,23 +95,23 @@ WSGI_APPLICATION = 'Medical_Store_Management_System.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
-# 'default': {
-#     'ENGINE': 'django.db.backends.mysql',
-#     'NAME': 'medical_store_management',
-#     'HOST': '127.0.0.1',
-#     'PORT': '3307',
-#     'USER': 'root',
-#     'PASSWORD': ''
-# }}
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
+DATABASES = {
+'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'd229g9ljl5jvnf',
+    'HOST': 'ec2-3-211-228-251.compute-1.amazonaws.com',
+    'PORT': '5432',
+    'USER': 'jqleztkpmgmfde',
+    'PASSWORD': 'a85b6337857b65fcb7be8814dc7d6810a1a8e820ab80ac9eb5960b142bdaf0c6'
+}}
 
 
 
@@ -145,7 +152,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -153,4 +167,10 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+django_heroku.settings(locals())
 
