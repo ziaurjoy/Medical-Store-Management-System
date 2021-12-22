@@ -8,13 +8,15 @@ from rest_framework.generics import get_object_or_404, Http404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
 class MedicineViewSet(viewsets.ViewSet):
 
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def list(self, request):
         try:
@@ -40,7 +42,7 @@ class MedicineViewSet(viewsets.ViewSet):
             queryset = Medicine.objects.all()
             get_medicine = get_object_or_404(queryset, pk=pk)
             serializer = MedicineSerializer(get_medicine)
-            return Response(serializer.data, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         except:
             return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
     
