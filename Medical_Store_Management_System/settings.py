@@ -96,23 +96,23 @@ WSGI_APPLICATION = 'Medical_Store_Management_System.wsgi.application'
 
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
 DATABASES = {
-'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'd229g9ljl5jvnf',
-    'HOST': 'ec2-3-211-228-251.compute-1.amazonaws.com',
-    'PORT': '5432',
-    'USER': 'jqleztkpmgmfde',
-    'PASSWORD': 'a85b6337857b65fcb7be8814dc7d6810a1a8e820ab80ac9eb5960b142bdaf0c6'
-}}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+# DATABASES = {
+# 'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'd229g9ljl5jvnf',
+#     'HOST': 'ec2-3-211-228-251.compute-1.amazonaws.com',
+#     'PORT': '5432',
+#     'USER': 'jqleztkpmgmfde',
+#     'PASSWORD': 'a85b6337857b65fcb7be8814dc7d6810a1a8e820ab80ac9eb5960b142bdaf0c6'
+# }}
 
 
 
